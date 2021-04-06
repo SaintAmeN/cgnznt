@@ -3,6 +3,8 @@ package com.sshpr.cgnznt.demo.controller;
 import com.sshpr.cgnznt.demo.model.Account;
 import com.sshpr.cgnznt.demo.service.AccountRoleService;
 import com.sshpr.cgnznt.demo.service.AccountService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,20 +14,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.management.openmbean.CompositeData;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping(path = "/admin/account/")
 @PreAuthorize(value = "hasRole('ADMIN')")
 public class AdminAccountController {
 
-    @Autowired
-    private AccountService accountService;
-    @Autowired
-    private AccountRoleService accountRoleService;
+    private final AccountService accountService;
+    private final AccountRoleService accountRoleService;
 
     @GetMapping("/list")
     public String getUserList(Model model) {

@@ -1,5 +1,6 @@
 package com.sshpr.cgnznt.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,10 @@ public class Account {
     @JoinTable(name = "account_user_roles",
             joinColumns = @JoinColumn(name = "account_id"))
     private Set<AccountRole> userRoles;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<AccountScore> userScores;
 
     public boolean isAdmin() {
         return userRoles.stream()

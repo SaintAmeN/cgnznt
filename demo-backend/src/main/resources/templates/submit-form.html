@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments :: styleLinks" th:remove="tag"></th:block>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"></th:block>
+
+<form th:action="@{/competition}" method="post" th:object="${submissionRequest}">
+    <div class="content-container">
+        <div class="container">
+            <div class="row col-12">
+                <div class="row col-12">
+                    <h1>Submission form</h1>
+                </div>
+                <div th:if="${errorMessage != null}" class="row col-12">
+                    <div class="alert alert-danger col-12" role="alert">
+                        <p th:text="${errorMessage}"></p>
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label for="user">Username:</label>
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" id="user" type="text" th:field="*{user}" readonly>
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label for="language">Language:</label>
+                    </div>
+                    <div class="col-6">
+                        <select id="language" th:field="*{languageChoice}">
+                            <option th:each="lang : ${languages}"
+                                    th:value="${lang}"
+                                    th:text="${lang.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label for="task">Task:</label>
+                    </div>
+                    <div class="col-6">
+                        <select id="task" th:field="*{taskId}">
+                            <option th:each="task : ${tasks}"
+                                    th:value="${task.getId()}"
+                                    th:text="${task.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                        <label for="solution">Solution code:</label>
+                    </div>
+                    <div class="col-6">
+                        <textarea class="form-control" id="solution" name="solution" th:field="*{input}"/>
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<th:block th:replace="fragments :: footer" th:remove="tag"></th:block>
+<th:block th:replace="fragments :: jsScripts" th:remove="tag"></th:block>
+</body>
+</html>
