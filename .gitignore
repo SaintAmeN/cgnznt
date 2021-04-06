@@ -1,0 +1,33 @@
+demo-backend/HELP.md
+demo-backend/target/
+demo-backend/.mvn/wrapper/maven-wrapper.jar
+demo-backend/**/src/main/**/target/
+demo-backend/**/src/test/**/target/
+
+### STS ###
+demo-backend/.apt_generated
+demo-backend/.classpath
+demo-backend/.factorypath
+demo-backend/.project
+demo-backend/.settings
+demo-backend/.springBeans
+demo-backend/.sts4-cache
+
+### IntelliJ IDEA ###
+demo-backend/.idea
+demo-backend/*.iws
+demo-backend/*.iml
+demo-backend/*.ipr
+
+### NetBeans ###
+demo-backend//nbproject/private/
+demo-backend/nbbuild/
+demo-backend/dist/
+demo-backend/nbdist/
+demo-backend/.nb-gradle/
+demo-backend/build/
+demo-backend/!**/src/main/**/build/
+demo-backend/!**/src/test/**/build/
+
+### VS Code ###
+demo-backend/.vscode/

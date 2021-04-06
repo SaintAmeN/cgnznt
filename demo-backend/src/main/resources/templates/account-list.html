@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments :: styleLinks" th:remove="tag"></th:block>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"></th:block>
+
+<div class="content-container">
+    <h1>Account list</h1>
+    <div class="row col-md-12">
+        <div class="row col-md-12 list-header-row">
+            <div class="col-3">Id</div>
+            <div class="col-3">Username</div>
+            <div class="col-3">Roles</div>
+            <div class="col-3"><!--Buttons--></div>
+        </div>
+        <div th:each="account : ${accounts}" class="row col-md-12 list-data-row">
+            <div class="col-3" th:text="${account.getId()}"></div>
+            <div class="col-3" th:text="${account.getUsername()}"></div>
+            <div class="col-3" th:text="${account.getUserRoles()}"></div>
+            <div class="row col-3">
+                <div class="col-3">
+                    <a th:href="@{/admin/account/remove(accountId=${account.getId()})}">
+                        <button th:disabled="${account.isAdmin()}" type="button" class="btn btn-danger">Remove
+                        </button>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a th:href="@{/admin/account/toggleLock(accountId=${account.getId()})}">
+                        <button type="button" class="btn btn-primary"
+                                th:text="${account.isLocked()? 'Unlock': 'Lock'}">
+                        </button>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a th:href="@{/admin/account/resetPassword(accountId=${account.getId()})}">
+                        <button type="button" class="btn btn-primary">
+                            Reset Password
+                        </button>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a th:href="@{/admin/account/editRoles(accountId=${account.getId()})}">
+                        <button type="button" class="btn btn-primary">
+                            Edit roles
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments :: footer" th:remove="tag"></th:block>
+<th:block th:replace="fragments :: jsScripts" th:remove="tag"></th:block>
+</body>
+</html>

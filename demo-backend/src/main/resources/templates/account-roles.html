@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments :: styleLinks" th:remove="tag"></th:block>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"></th:block>
+
+<form th:action="@{/admin/account/editRoles}" method="post">
+    <div class="content-container">
+        <div class="container">
+            <div class="row col-12">
+                <div class="row col-12">
+                    <h1>Edit roles form</h1>
+                </div>
+                <input type="hidden" name="accountId" th:value="${user.getId()}">
+                <div class="row col-12" th:each="role : ${roles}">
+                    <div class="col-3" th:text="${role.getRoleName()}"></div>
+                    <div class="offset-6 col-3">
+                        <input type="checkbox" th:name="${role.getRoleName()}" class="form-control"
+                               th:checked="${user.getUserRoles().contains(role)}">
+                    </div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<th:block th:replace="fragments :: footer" th:remove="tag"></th:block>
+<th:block th:replace="fragments :: jsScripts" th:remove="tag"></th:block>
+</body>
+</html>
